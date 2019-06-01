@@ -40,6 +40,7 @@ function init() {
     //
     // }
 
+    //初始化小格数字
     for(let i= 0 ;i<4;i++) {
         number[i]=new Array();
         // hasConflicted[i]=new Array();
@@ -75,17 +76,20 @@ function initReview() {
     }
 }
 
+/**
+ * 获取随机数
+ */
 function getRandomNumber() {
     let randomIndexX = Math.floor(Math.random()*4);
     let randomIndexY = Math.floor(Math.random()*4);
     console.log(randomIndexX,randomIndexY);
 
-    number[randomIndexX][randomIndexY] = 2;
-
-
-
+    number[randomIndexX][randomIndexY] = Math.random()<0.5? 2 : 4;
 }
 
+/**
+ * 更新含有数字的视觉样式
+ */
 function updateBoardView() {
     for(let i=0;i<4;i++){
         for(let j = 0;j<4;j++){
@@ -98,28 +102,34 @@ function updateBoardView() {
                 'top':getCellTop(i),
                 'left':getCellLeft(j),
                 'background-color':getNumberBackgroundColor(number[i][j]),
-                // 'color':'#ffffff',
-                //
-                // 'border-radius':'20px',
-                // 'position':'absolute'
             });
-            // if(number[i][j]===0){
-            //     numberCell.text('');
-            // }else {
-            //     numberCell.text(number[i][j]);
-            // }
+
             number[i][j]===0?numberCell.text(''):numberCell.text(number[i][j]);
-            // if(number[i][j]===0){
-            //
-            // }
+
         }
     }
 }
 
+/**
+ * 移动数字
+ */
+function move() {
+
+}
+/**
+ * 获取点的top值
+ * @param i
+ * @returns {number}
+ */
 function getCellTop(i) {
     return i*(config.cell+config.cellSpace)+config.cellSpace;
 }
 
+/**
+ * 获取点的left值
+ * @param j
+ * @returns {number}
+ */
 function getCellLeft(j) {
     return j*(config.cell+config.cellSpace)+config.cellSpace;
 }
